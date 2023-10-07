@@ -1,0 +1,299 @@
+\documentclass[twocolumn]{article}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+\begin{document}
+
+\title{Precourse SoM+SoED}
+\author{Lecture notes by Rangi Siebert}
+\maketitle
+\tableofcontents
+
+\section{Statements And Sets}
+			\paragraph{Main Porpose of Mathematics:}
+			Formulation of \textbf{Statements} and assessing weather certain 
+			statements are \textbf{true (t,1)} or \textbf{false (f,0)} 
+
+			\paragraph{Definition (informal):}
+			A "statement" is an expression that is either true or false.
+
+			\paragraph{Examples:}
+			\begin{enumerate}
+				\item "It is raining" is a statement
+				\item "$x=5$" is a statement
+				\item "The Navier-Stokes eq. have a unique solution in 
+					three dimensions." is a statement.
+			\end{enumerate}
+
+	\subsection{Logical Connectives:}
+		\textbf{Lofical connectives} combine / modify simple statements to 
+		createnew ones. Main examples: Negation, And, Or, Implication, Equivalance
+
+		\subsubsection{Negation}
+			If $A$ is a statement, the $\neg A$ is the negation of $A$.\\
+			It holds:
+			\begin{enumerate}
+				\item $\neg A is true if $A is false
+				\item $\neg A$ is false if $A$ is true
+			\end{enumerate}
+
+%			\begin{table}[]
+%			\begin{tabular}{l|l}
+%				$A$ & $\neg A$ \\ \hline
+%				0 & 1 \\
+%				1 & 0
+%				\end{tabular}
+%			\end{table}
+
+			\paragraph{Example:}
+				$\neg(x=5)$ means $x\not=5$
+			
+		\subsubsection{And}
+			If $A$ and $B$ are statements, then "$A\wedge B$" means "$A$ and $B$"
+			\begin{enumerate}
+			\item $A\wedge B$ is true if both $A$ and $B$ are true.
+			\item $A\wedge B$ is false if at least one of the statements $A$ and $B$
+				is false.
+			\end{enumerate}
+%			\begin{table}[]
+%			\begin{tabular}{l|l|l}
+%			$A$  & $B$  & $A\wedge B$  \\ \hline
+%			0 & 0 & 0 \\
+%			0 & 1 & 0 \\
+%			1 & 0 & 0 \\
+%			1 & 1 & 1 
+%			\end{tabular}
+%			\end{table}
+			\paragraph{Example:}
+				If $A$ is the statement "$x\le3$ " and $B$ the statement "$x$ 
+				is a natural number", then $A\wedge B$ is "$x$ is 1, 2, or 3".
+
+		\subsubsection{Or}
+			If $A$ and $B$ are statements, then "$A\vee B$" means "$A$ or $B$".\\
+			It holds:
+			\begin{enumerate}
+			\item $A\vee B$ is true if at least one of the statements $A$ and $B$ 
+				is true
+			\item $A\vee B$ is false if both the statements $A$ and $B$ are false	
+			\end{enumerate}
+			
+			\paragraph{Note:}
+				The "or" is not exclusive.
+
+			\paragraph{Example:}
+				If $A$ is the statement "$x$ is a natural number smaller than
+				4" and $B$ is the statement "$x$ is a natural number greater
+				 than 2", then $A\vee B$ is "$x$ is a natural number".
+
+		\subsubsection{Implication}
+			"$A\Rightarrow B$" means "If $A$ is true, then $B$ is true."
+			\begin{enumerate}
+			\item "$A\Rightarrow B$" means "if both $A$ and $B$ are true of if $A$ 
+				is false"
+			\item "$A\Rightarrow B$" is false, if $A$ is true and $B$ is false.	
+			\end{enumerate}
+
+			\paragraph{Example:}
+				\[
+				(\mbox{m, n}\in\mathbb N\wedge\mbox{m is even})
+				\Rightarrow m*n \mbox{ is even}
+				.\] 
+			\paragraph{Proof:}
+				Assume m, n are natural numbers. Then m is even
+				\begin{itemize}%[leftmargin=1em]
+				\renewcommand{\labelitemi}{$\Rightarrow$}
+				\item $m=2*m'$ for some $m'\in\mathbb N$
+				\item $m*n=2*m'*n$ with $m'\in\mathbb N$
+				\item $m*n$ is even				
+				\end{itemize}
+			\paragraph{Note:}
+				\[
+					(A\Rightarrow B)\not\Rightarrow(B\rightarrow B)
+				.\] 
+
+		\subsubsection{Equivalance}
+			"$A\Leftrightarrow B$" means "A is true if and only if B is true".\\
+			It holds:
+			\begin{enumerate}
+			\item "$A\Leftrightarrow B$" is true if both $A$ and $B$ are true
+				or if both $A$ and $B$ is false.
+			\item "$A\Leftrightarrow B$" is false if $A$ is false and $B$
+				is true or vice versa
+			\end{enumerate}
+			\paragraph{Note:}
+				\begin{enumerate}
+				\item ($(A\Leftrightarrow B)
+					\Leftrightarrow
+					\{(A\Rightarrow B)\wedge(B\Rightarrow A)\}$
+				\item $(A\Rightarrow B)\Leftrightarrow(\neg B\Rightarrow\neg A)$ 
+				\end{enumerate}
+			\paragraph{Example:}
+				For m, n natural numbers:
+				\[
+				m*n\mbox{ is even}\Leftrightarrow(\mbox{$m$ is even}\vee n\mbox{ is even})
+				.\] 
+			\paragraph{Proof:}
+				Show:"$B\Rightarrow B$" and "$A\Rightarrow B$"
+				\begin{enumerate}
+				\item "$B\Rightarrow A$" is already proven; see above
+				\item "$A\Rightarrow B$":\\
+			 		We show the equvalent "$\neg B\Rightarrow\neg A$"\\
+					Suppose $m$ is odd and $n$ is odd, i.e.,\\
+					$m=2m'+1$, $n=2n'+1$, $m',n'\in\mathbb N_0$   
+					\begin{itemize}%$ [leftmargin=1em]
+					\renewcommand{\labelitemi}{$\Rightarrow$}
+					\item $m*n=4m'n'+2(m’+n’)+1=2*k+1$; with $k:=2m’*n'+(m’+n’)\in\mathbb N_0$
+				\item $m*n$ is odd 
+					\end{itemize}
+				\end{enumerate}
+
+	\subsection{Quantifiers}
+		Quantifiers describe quantitative properties:
+		\begin{enumerate}
+		\item $\forall$: for all
+		\item $\exists$: exists
+		\item $\exists_1$, $\exists!$: there exists precisely one
+		\item $\not\exists$: there does not exist (i.e., $\neg\exists$)
+		\end{enumerate}
+			\paragraph{Example:}
+				\[
+				\forall x\in\mathbb R\exists n\in\mathbb N:n>x
+				.\]
+				\textbf{means:}\\
+				"For all real numbers $x$, there exists a natural number
+				$n$ such that $n$ is bigger than $x$" 
+			\paragraph{Note:}
+				The order matters
+
+	\subsection{Sets}
+			\paragraph{Definition (informal):}
+				A collection of well-defined distinct objects is called a set.
+				Teh objects contained in a set are called elements.
+			\paragraph{Examples:}
+				\begin{enumerate}
+				\item The set of all countries on earth
+				\item The set of all colors
+				\end{enumerate}
+			\paragraph{Description of Sets:}
+				\begin{enumerate}
+				\item Explicit definition(write all elements down)
+
+					\[
+					A=\{a,b,c,d\}
+					.\]  
+				\item Characterization by property
+				\end{enumerate}
+					\[
+					A=\{\mbox{countries}\mid\mbox{contains the letter a}\}
+					.\] 
+					\[
+					\mathbb Q:=\{x\in\mathbb R\mid\exists q\in\mathbb N
+					:q*x\in\mathbb Z\} 
+					.\] 
+
+			\paragraph{Examples of Sets:}
+				\begin{itemize}%[leftmargin=1em]
+				\renewcommand{\labelitemi}{$\rightarrow$}
+				\item $\mathbb N$ : natural numbers
+				\item $\mathbb N_0$ : natural numbers and zero
+				\item $\mathbb Z$ : integers
+				\item $\mathbb Z$ : rational numbers
+				\item $\mathbb R$ : real numbers 
+				\item $\mathbb P$ : set of all prime numbers
+				\item $\mathbb C$ : complex nubers
+				\end{itemize}
+			
+			\paragraph{Def.: Intervals:}
+				Let $a,b\in\mathbb R$. We define:
+				\begin{itemize}%[leftmargin=1em]
+				\renewcommand{\labelitemi}{$\rightarrow$}
+				\item $[a,b]:=\{s\in\mathbb R\mid a\le s\le b\}$
+				\item $(a,b]:=]a,b].=\{s\in\mathbb R\mid a<s\le b\}$ 
+				\item $\mathbb R_{\ge0}:=[0,\inf)$
+				\end{itemize}
+	\subsection{Basic Set-Operations and Relations}
+		\begin{itemize}%[leftmargin=1em]
+		\renewcommand{\labelitemi}{$\rightarrow$}
+		\item $a\in A$ : $a$ is an element of $A$ 
+		\item $a\not\in A$ : $a$ is not an element of $A$ 
+		\item $A\subset B$ : $A$ is a subset of $B$, i.e., $a\in A\Rightarrow a\in B$  
+		\item $A\not\subset B$ : $A$ is not a subset of $B$,  
+			$\exists a\in A:a\not\in B$
+		\item $A\subsetneq B$ : $A$ is equal to $B$, i.e.,
+			\[
+			(A\subset B)\wedge(\exists b\in B:b\not\in A)
+			.\] 
+		\item $A=B$ : $A$ is equal to $B$, i.e., $(A\subset B)\wedge(B\subset A)$
+		\item $A\cup B:=\{x\mid x\in A\vee x\in B\}$ (union)
+		\item $A\cap B:=\{x\mid x\in A \wedge x\in B\}$ (intersection) 
+		\item $A\backslash B=\{x\in A\mid x\not\in B\}$ ($A$ without $B$)
+		\item $C_A(B):=A\backslash B$ in the situation $B\subset A$ 
+		\item $\mid A\mid$ : the cardinality of $A$, i.e., number of elements
+		\item $A\times B:=\{(a,b)\mid a\in A,b\in B\}$ Cartesian product of $A$ and $B$.
+		\item $\emptyset$ : empty set
+		\end{itemize}
+			\paragraph{Example:}
+				\[
+				\emptyset <\mathbb P<\mathbb N<\mathbb N_0<\mathbb Z<
+				\mathbb R<\mathbb C
+				.\] 
+			\paragraph{Note:}
+				The operation $\cup$, $\cap$, $\times$ can be iterated.
+				\[
+				\bigcup_{i=1}^nA_i:=A_1\cup A_2\cup...\cup A_n,~n\in\mathbb N
+				.\] 
+				\[
+				\bigcap_{i=1}^{n}A_i:=A_1\cap A_2\cap...\cap A_n,~n\in\mathbb N
+				.\] 
+				\[
+				\prod_{i=1}^{n}A_1:=A_1\times A_2\times...\times A_n
+				.\] 
+			\paragraph{Example:}\mbox{}\\
+				$A:=\{1,2,5,7\}$,   $B:=\{n\in\mathbb N\mid n\mbox{ is odd}\}$,
+				\\
+				$C:=\{2,\sqrt[]{2},B\}$,   $D:=\{1,5,7\}$ 
+				\\\\
+				$D\subsetneq B$, $D\subsetneq A$, $C\not\subset B$, 
+				$B\in C$, $B\not\subset C$, $\{B\}\subset C$, 
+				$B\backslash A=\{3\}\cup\{n\in\mathbb N\mid n\mbox{ is odd
+				and }n\ge9\}$,\\
+				
+				\[
+				\begin{split}
+					C\times D=\{ & (2,1),(2,5),(2,7),\\
+						     & (\sqrt[]{2},1),(\sqrt 2,5),(\sqrt2,7),\\
+						     & (B,1),(B,5),(B,7)\}
+				\end{split}
+				\] 
+				\[
+				\mid C\times D\mid=9=\mid C\mid*\mid D\mid
+				.\] 
+		\subsubsection{Disjoint Sets}
+			Two sets $A$ and $B$ are called disjoint if $A\cap B=\emptyset$ 
+		
+		\subsubsection{Calculus Rules for set operations:}
+			If $A,B,C$ are sets, then it holds:
+			\begin{enumerate}
+			\item $A\cup B=B\cup A$, $A\cap B=B\cap A$ (commutativity)
+			\item $A\cup(B\cup C)=(A\cup B)\cup C)$ \\
+				$A\cap...$ (associativity)
+			\item $A\cup(B\cap C)=(A\cup B)\cap(A\cup C)$\\
+				$A\cap...$ (distributivity)
+			\item $C\backslash(A\cap B)=(C\backslash A)\cup(C\backslash B)$\\
+				$C\backslash(A\cup...$  (De Morgan)
+			\item $\mid A\times B\mid=\mid A\mid*\mid B\mid$
+			\item $\mid A\cup B\mid=\mid A\mid+\mid B\mid -\mid A\cap B\mid$
+			\item $\mid A\backslash B\mid =\mid A\mid -\mid A\cap\mid $ 
+			\end{enumerate}
+			(5.-7. for $\mid A\mid,\mid B\mid<\inf$)
+\end{document}
