@@ -20,7 +20,7 @@
 \tableofcontents
 
 \section{Statements And Sets}
-			\paragraph{Main Porpose of Mathematics:}
+			\paragraph{Main Purpose of Mathematics:}
 			Formulation of \textbf{Statements} and assessing weather certain 
 			statements are \textbf{true (t,1)} or \textbf{false (f,0)} 
 
@@ -35,9 +35,9 @@
 					three dimensions." is a statement.
 			\end{enumerate}
 
-	\subsection{Logical Connectives:}
-		\textbf{Lofical connectives} combine / modify simple statements to 
-		createnew ones. Main examples: Negation, And, Or, Implication, Equivalance
+	\subsection{Logical Connectives}
+		\textbf{Logical connectives} combine / modify simple statements to 
+		create new ones. Main examples: Negation, And, Or, Implication, Equivalence
 
 		\subsubsection{Negation}
 			If $A$ is a statement, the $\neg A$ is the negation of $A$.\\
@@ -121,7 +121,7 @@
 					(A\Rightarrow B)\not\Rightarrow(B\rightarrow B)
 				.\] 
 
-		\subsubsection{Equivalance}
+		\subsubsection{Equivalence}
 			"$A\Leftrightarrow B$" means "A is true if and only if B is true".\\
 			It holds:
 			\begin{enumerate}
@@ -147,7 +147,7 @@
 				\begin{enumerate}
 				\item "$B\Rightarrow A$" is already proven; see above
 				\item "$A\Rightarrow B$":\\
-			 		We show the equvalent "$\neg B\Rightarrow\neg A$"\\
+			 		We show the equivalent "$\neg B\Rightarrow\neg A$"\\
 					Suppose $m$ is odd and $n$ is odd, i.e.,\\
 					$m=2m'+1$, $n=2n'+1$, $m',n'\in\mathbb N_0$   
 					\begin{itemize}%$ [leftmargin=1em]
@@ -178,7 +178,7 @@
 	\subsection{Sets}
 			\paragraph{Definition (informal):}
 				A collection of well-defined distinct objects is called a set.
-				Teh objects contained in a set are called elements.
+				The objects contained in a set are called elements.
 			\paragraph{Examples:}
 				\begin{enumerate}
 				\item The set of all countries on earth
@@ -210,7 +210,7 @@
 				\item $\mathbb Z$ : rational numbers
 				\item $\mathbb R$ : real numbers 
 				\item $\mathbb P$ : set of all prime numbers
-				\item $\mathbb C$ : complex nubers
+				\item $\mathbb C$ : complex numbers
 				\end{itemize}
 			
 			\paragraph{Def.: Intervals:}
@@ -313,7 +313,7 @@
 			.\] 
 		
 		\paragraph{Def.:}
-			Let $f:A\to B$ be a function between nenempty sets $A$ and $B$. Then:
+			Let $f:A\to B$ be a function between nonempty sets $A$ and $B$. Then:
 			\begin{itemize}%[leftmargin=1em]
 			\renewcommand{\labelitemi}{$\rightarrow$}
 			\item $A$ is called the domain.
@@ -425,7 +425,7 @@
 			.\] 
 	
 			\paragraph{Example:}
-				The function $g(x):=x^2$ is nither surjective nor injective
+				The function $g(x):=x^2$ is neither surjective nor injective
 				as a map from $\mathbb R $ to $\mathbb R $. However, $g$ is:
 				\begin{itemize}%[leftmargin=1em]
 				\renewcommand{\labelitemi}{$\rightarrow$}
@@ -433,23 +433,104 @@
 				\item bijective as a map $g:[0,\inf)\to[0,\inf)$ 
 				\end{itemize}
 				\textbf{$\Rightarrow$ choice of domain and co-domain crucial}
-				
+		\subsubsection{Inverse Function}
+			If $f:A\to B$ is a bijective map between nonempty sets, then there exists a unique function
+			$f^{-1}:B\to A$ satisfying
+			\[
+			f^{-1}(f(x))=x~~\forall x\in A
+			.\] 
+			\[
+			f(f^{-1}(y))=y~~\forall y\in B
+			.\] 
+			
+			\paragraph{Note:}
+				Do not get confused with the notation for preimages here!
+				\begin{itemize}%[leftmargin=1em]
+				\renewcommand{\labelitemi}{$\Rightarrow$}
+				\item If $f^{-1}$ exists, then $f^{-1}(B)$
+					\\$~~~~~~~~$ = preimage of $B$ under $f$
+					\\$~~~~~~~~$ = image of $B$ under $f^{-1}$ 
+				\end{itemize}
+			\paragraph{Example:}
+				Consider $g:[0,\inf)\to[0,\inf),x\mapsto x^2$
+				\begin{itemize}
+				\item $g$ bijective, $g^{-1}:[0,\inf)\to[0,\inf)$ given by $g^{-1}(y):=\sqrt[]{y}$
+				\item $\forall \in[0,\inf):g^{-1}(g(x))=\sqrt[]{x^2}=x$
+				\\ $\forall y\in[0,\inf):g(g^{-1}(y))=(\sqrt y)^2=y$ 
+				\end{itemize}
+
+	\subsection{Inequalities}
+		In addition to identities, inequalities pay an essential role in math, we have:
+		\begin{enumerate}
+		\item $x<y,x>y$ : strict inequalities, "$x$ is strictly smaller / greater than y".
+		\item $x\le y,x\ge y$ : non-strict inequalities
+		\begin{itemize}%[leftmargin=1em]
+		\renewcommand{\labelitemi}{$\Rightarrow$}
+		\item "$\le$" defines a total order on $\mathbb R $  
+		\end{itemize}
+		\end{enumerate}
+
+		\subsubsection{Order Properties}
+			\begin{enumerate}
+			\item reflexivity: $x\le x~~\forall x\in\mathbb R $
+			\item transitivity: $\forall x,y,z\in\mathbb R :(x\le y\wedge y\le z)\Rightarrow x\le z$
+			\item antisymmetry: $\forall x,y\in\mathbb R :(x\le y\wedge z\le x)\Rightarrow x=y$
+			\item totality: $\forall x,y\in\mathbb R :x\le y\vee y\le x$ 
+			\end{enumerate}
+
+			\paragraph{Note:}
+				The property of antisymmetry is often used to prove identities
+				\begin{itemize}%[leftmargin=1em]
+				\renewcommand{\labelitemi}{$\rightarrow$}
+				\item Show "=" by proving "$\le$" and "$\ge$".  
+				\end{itemize}
+				In practice, one often encounters inequalities of the form $f(x)\le 0$ involving
+				functions $f:\mathbb R^n\to\mathbb R ,n\in \mathbb N $, and is interested in the
+				solution set:
+				\[
+				\mathbb L:=\{x\in\mathbb R ^n\mid f(x)\le0\}
+				.\] 
+				To solve such inequalities, one uses the following properties:
+				\begin{itemize}
+				\item $a<b,c\in\mathbb R \Rightarrow a+c<b+c$ 
+				\item $(a<c\wedge c<d)\Rightarrow a+c<b+d$ 
+				\item $(a<b\wedge c>0)\Rightarrow ac<bc$
+				\item $(0<a<b\wedge0<c<d)\Rightarrow ac<bd$ 
+				\item $(a<b\wedge c<0)\Rightarrow ca>cb$
+				\item $(a,b>0\wedge a<b)\Rightarrow\frac{1}{b}<\frac{1}{a}$ 
+				\end{itemize}	
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		\subsubsection{Monotoniety}
+			If $D\subset\mathbb R $ is a nonempty set and $g:D\to\mathbb R $ a function, then $g$ is 
+			called non-decreasing on $D$ if
+			\[
+				(x,y\in D\wedge x\le y)\Rightarrow g(x)\le g(y)
+			.\] 
+			$g$ is called non-increasing if $-g$ is non-decreasing
+			\paragraph{Example:}
+				\begin{enumerate}
+				\item $g:[0,\inf)\to\mathbb R ,x\mapsto x^2$, is non-decreasing
+				\item $g:[0,\inf)\to\mathbb R ,x\mapsto\sqrt x$, is non-decreasing
+				\item $g:(-\inf,0]\to\mathbb R ,x\mapsto x^2$, non-increasing \\($\Rightarrow$ 
+					domain matters)  
+				\end{enumerate}
+			\paragraph{Example:}
+				For all $a,b\ge 0$, we have 
+				\[
+				\sqrt{ab}\le\frac{a+b}{2}
+				.\] 
+			\paragraph{Proof:}
+				For $a,b\ge0$, we have
+				\[  
+				\begin{split}
+					\sqrt{ab}\le\frac{a+b}{2}\Leftrightarrow & 
+					~~(\sqrt{ab})^2\le(\frac{a+b}{2})^2 \\
+					\Leftrightarrow & ~~ab\le \frac{1}{4}(a^2+2ab+b^2)\\
+					\Leftrightarrow & ~~ 2ab\le a^2+2ab+b^2\\
+					\Leftrightarrow & ~~ 0\le a^2-2ab+b^2=(a-b)^2
+				\end{split}
+				\]   
 
 \end{document}
 
