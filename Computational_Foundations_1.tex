@@ -1,0 +1,227 @@
+\documentclass[twocolumn]{article}
+\usepackage{amsfonts, amssymb, amsmath}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing}
+\usepackage{graphicx}
+\graphicspath{ {./media/} }
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black}
+
+\begin{document}
+\title{Computational Foundations}
+\author{Lecture Notes by Rangi Siebert}
+\date{\today}
+\maketitle
+\tableofcontents
+
+\subsection{Preface}
+	\paragraph{The three major topics:}\mbox{}
+	\begin{center}
+		\begin{tabular}{p{1.5cm}|p{2.5cm}|p{2.5cm}}
+		Aspect & What & Why\\\hline
+		Program- ming & Develop a solid understanding of C/C++ including both object orientation and embedded targets. & Most aerospace applications have requirements that are only fulfilled with C/C++. \\\hline
+		Computer Science Foundations & To learn the basic notations like algorithms design, software engineering, computational complexity, data structures. & To safely navigate the complex and growing field of computational methods.\\\hline
+		Digital electronics (basics) & To learn how binary logic and digital circuits lead to computers & For programming embedded systems, a certain level of low-level knowledge is helpful.
+	\end{tabular}
+	\end{center}
+	\subsubsection{Motivation}
+		\paragraph{Why C/C++:}
+			\begin{itemize}
+			\item One of the \textbf{few active languages} with a long history (equally Fortran).
+			\item The \textbf{language of choice for embedded} (Arduino, FPGAs, Flight Controller, Operating Systems, ...).
+			\item The \textbf{language of choice for high performance} (MPI/HPC, Simulation, Real-Time, Visualization).
+			\item It is \textbf{complete and non-simplified} (hard to learn, but good to know, all important concepts can be shown).
+			\item It can be a \textbf{safe language} with sufficient education (here the history strikes back).
+			\item It can be efficient to use as high quality libraries for \textbf{everything} are available.
+			\end{itemize}
+		\paragraph{Training the Next Generation of Scientists:}
+			New knowledge and skills will be needed to make efficient use of new system architectures and software. "Hybrid" disciplines such as computational science and data science and interdisciplinary teams may come to play an increasingly important role. Keeping abreast of a rapidly evolving suite of relevant technologies is challenging for many computer science programs, especially those with limited partnerships with the private sector. Most domain scientists rely on traditional software tools and languages and may not have ready access to knowledge or expertise about new approaches.
+			\begin{itemize}
+			\item[$\rightarrow$] Domain Scientists need to get somewhat independent from traditional domain software tools.
+			\end{itemize}
+			...
+\section{Computers}
+	Personal computers have always been sold as a computing appliance including both software and hardware (OEM - "Original Equipment Manufacturer"). Even today, most computers are shipped with:
+	\begin{itemize}
+	\item MS Windows
+	\item Apple Mac OS
+	\item Linux
+	\end{itemize}
+	\subsection{MS DOS}
+		\paragraph{Central Idea:}
+			 A small operating system to manage disks (floppy disks, hard drives) and to run programs in relation to files. From these early days, a built-in feature has survived to today: \textbf{The Command Line (CMD)}	
+		\subsubsection{The CMD}
+			\begin{itemize}
+				\item \textbf{Some Elements}
+			\begin{itemize}
+		\item[$<$drive letter$>$:] to change the drive
+		\item[CD] to change the directory
+		\item[DIR] to list a directory, consider switches /P and /S which change the behavior
+		\item[MD] to create a directory
+		\item[RD] to remove a directory (only if empty)
+		\item[TREE] shows all files below the current working directory
+		\item[ATTRIB] show and modify attributes like write protection on files
+		\item[COPY] is used to copy files
+		\item[DEL] deletes files (synonymous with ERASE)
+		\item[EDIT] provides a simple editor (EDLIN before MS DOS 6.0)
+		\item[FIND] searches for a string in a file
+		\item[MORE] pages a file to the screen	
+		\item[MOVE] moves a file to a different location
+		\item[PRINT] is used to print a file
+		\item[REPLACE] works like copy but replaces the file in the target
+		\item[TYPE] outputs the whole content of the given file
+		\item[XCOPY] extends COPY to be able to copy whole directories and trees
+		\item[CLS] clears the screen
+		\item[DATE] shows and modifies the date
+		\item[TIME] shows and modifies the time
+		\item[ECHO ]is used to control whether commands are shown or not (mainly in batch files)
+		\item[FDISK] is used to set up hard disks (partitions, etc.)
+		\item[FORMAT] organizes a file system on floppy disks or hard disk partitions
+		\item[HELP ]shows help for a dos command (use it in the tutorial!)
+		\item[SET ]shows configuration information and environment variables and modifies them
+		\item[VER] shows the version of DOS in use
+			\end{itemize}
+			\end{itemize}
+		\subsubsection{OS / Program Interaction}
+			In classical MS DOS, a program was supposed to replace the whole operating system and take full control over the computer (e.g., immediate mode, all memory directly accessible)\\\\
+			Information from the operating system was typically transferred through certain state including:
+			\begin{itemize}
+			\item Environment variables.
+			\item The current working directory CWD (progress working directory on linux, pwd).
+			\item A sequence of arguments.
+			\end{itemize}
+		\subsubsection{File Patterns}
+			A special helpful situation was that file names could be specified incomplete using special characters:
+			\begin{itemize}
+			\item[*] which could stand for zero or more arbitrary characters.
+			\item[?] which could stand for a single arbitrary character.
+			\end{itemize}
+			Together with the fact, that all files in DOS (and Windows today) have a file extension specifying the type, it became very easy to work on specific files. For example,
+			\begin{verbatim}
+			MD texts
+			COPY *.txt texts
+			\end{verbatim}
+			would first create a directory texts below the CWD and then copy all text files to this directory
+		\subsubsection{Automation Using the Command Line}
+			Many times, computers are used for routine tasks. And in many cases, you get no support from your IT. It is the nice to know that a stock windows provides enough to automate tasks and that a Linux is even more equipped with onboard automation tools. (.sh and .bat files)
+	\subsection{Microsoft Windows}
+		Windows has emerged over a few development steps, first being a graphical file manager, but the first relevant version of Windows is maybe Windows 3.1 (and Windows for Workgroups 3.11) together with the professional versions of Windows NT.
+		\includegraphics[width=\linewidth]{windows3}
+		\subsubsection{Key Idea}
+			The key idea of Windows is that interaction with a computer can have multiple parallel scopes represented by Windows out of which exactly one is active. This active window is the one receiving events from the user interface elements (keyboard \& mouse events). The event-driven architecture manifests itself in the structure of a Windows application which consists of a single Message Queue to which messages are delivered.
+	\subsection{Linux (and other UNIXes)}
+		\subsubsection{Unix Philosophy}
+			A famous formulation of the Unix philosophy is due to Douglas Mcilroy:\\\\\
+			Write programs such that they ...
+			\begin{itemize}
+				\item[...]  do only one thing and they to it well
+				\item[...]  can work together.
+				\item[...]  work on textual streams as this is the universal interface.
+			\end{itemize}
+			\paragraph{KISS principle:}
+				Keep it simple stupid.
+			\paragraph{Early software engineering:}
+				\begin{itemize}
+				\item Small is beautiful.
+				\item Make each program do one thing well.
+				\item Build a prototype as soon as possible.
+				\item Choose portability over efficiency.
+				\item Store data in flat text files.
+				\item Use software leverage to your advantage.
+				\item Use shell scripts to increase leverage and portability.
+				\item Avoid captive user interfaces.
+				\item Make every program a filter.
+				\end{itemize}
+			\paragraph{Other:}
+				\begin{itemize}
+				\item Everything is a file.
+				\item If it is a file, it should be a text file.
+				\end{itemize}
+		\subsubsection{Unix History}
+			\includegraphics[width=\linewidth]{unixhistory}
+		\subsubsection{POSIX}
+			Maybe the most influential standard for programming and operating systems ever developed
+			\begin{itemize}
+			\item Term Definitions
+			\item Application Interface (API functions, including C headers)
+			\item Mandatory Utilities
+			\end{itemize}
+			Coreutils is a set of programs that should be available on all systems (gnu.org/software/coreutils/manual/coreutils.pdf). Learning a selection of them will be helpful over time, but not as part of this lecture.
+	\subsection{The Web}
+		\paragraph{The Web as an Application Platform:}
+			Using \textbf{remote applications} over a web browser.
+			\begin{itemize}
+			\item Application runs in a "backend".
+			\item Frontend runs in a browser on various devices.
+			\item Users need to authenticate (username/password, OpenID, etc.).
+			\item Computational Power shifts to the backend.
+			\item Cloud Computing provides elastic performance to such applications.
+			\item Big Data is easier
+			\end{itemize}
+		\paragraph{Explore:}
+			Google Colab, Google Earth Engine, Microsoft Planetary Computer, Jupyter Notebooks (tutorial).
+		\subsection{Relevant Projects and Languages}
+			You need to learn:
+			\begin{itemize}
+			\item \textbf{Formatted programming} in HTML and JavaScript
+			\item \textbf{Backend programming} in PHP, Python and Jekyll (e.g., Github Pages)
+			\end{itemize}
+			And much more beyond this lecture...
+		\subsubsection{Typical Properties}
+			\begin{itemize}
+			\item No software on client.
+			\item User-level authentication.
+			\item Medium performance applications (some faster, some slower than on-hos computing).
+			\end{itemize}	
+			Programming in two components:
+			\begin{itemize}
+			\item The frontend is mostly written in HTML / JavaScript for modern browsers.
+			\item The backend can be written in any programming language
+			\end{itemize}
+\section{Imperative Programming}
+	\subsection{Algorithms}
+		\paragraph{Everyday Algorithms:}
+			Cooking a meal - A simple recipe; Finding the right heater setting; Sort playing cards.
+		\paragraph{Numbers - Integers:}
+			Written Addition; Written Subtraction; Written Multiplication; Division.
+		\paragraph{Numbers - Fractions:}
+			Detection Prime Numbers; Prime Decomposition; Greatest common divisor; Comparing fractions; Reducing fractions; Adding fractions; Multiplying fractions.
+		\paragraph{Games:}
+			Tic Tac Toe; Sudoku; Chess - queen end game; Chess - Two knight does not win (unless ...); 17+4; Minesweeper (or Kaboom).
+		\paragraph{Higher Mathematics - Linear Algebra:}
+			Finding Eigenvalues; Inverting a matrix; Finding the square root of a number.
+		\paragraph{Higher Mathematics - Analysis:}
+			Finding the root of a real-valued fraction; Computing the square root of a number; Computing the integral of a function.
+	\subsection{The Theory of Algorithms}
+		\paragraph{Free-form Algorithm Introduction:}
+			\paragraph{Algorithm 1.}
+				\textit{Ond draws a circle with the same radius r around A and B. If the radius is large enough (greater than half the distance), we are left with two intersection points of the circles which together define a line. This line is the bisector and the intersection of this respective line with the original line is the middle polint p.}\\\\
+				Assume we have a device (or person, or computer, or ...) that enables us to 
+				\begin{itemize}
+				\item draw a straight line between two points in space,
+				\item observe intersections of pairs of lines or pairs of circles resolving them to points,
+				\item draw a circle around any of the involved points such that the circle intersects an already existing point.
+				\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
