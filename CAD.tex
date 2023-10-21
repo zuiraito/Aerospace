@@ -1,0 +1,71 @@
+\documentclass[twocolumn]{article}
+\usepackage{amsfonts, amssymb, amsmath}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing}
+\usepackage{graphicx}
+\graphicspath{ {./media/} }
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black}
+
+\begin{document}
+\title{CAD/TB}
+\author{Lecture Notes by Rangi Siebert}
+\date{\today}
+\maketitle
+\tableofcontents
+
+\section{Introduction to Technical Drawings}
+	\paragraph{The product life cycle \& technical drawings}\mbox{}\\
+		\includegraphics[width=\linewidth]{life}
+	\paragraph{What is a technical drawing?}\mbox{}\\
+		\includegraphics[width=\linewidth]{what}
+		\begin{itemize}
+		\item The possibility of illustrating forms and transport thoughts in graphic form.
+		\item Means of communication between persons and departments.
+		\item Form of information and documentation.
+		\end{itemize}
+		Technical drawings are required to be complete, unambiguous and fully understandable in order to outlive its creator.
+	\paragraph{Purpose and classification of sketches:}\mbox{}\\
+		\includegraphics[width=\linewidth]{purpose}
+	\subsection{Norms and Standards}
+		\includegraphics[width=\linewidth]{norms}
+		TUM access to a high number of norms through Perinorm: ub.tum.de/perinorm. 
+		\subsubsection{DIN EN ISO 5457}
+			We will use the drawing sheet according to DIN EN ISO 5457.
+		\begin{itemize}
+		\item Definition of sheet sizes based on the area of format A0 as 1m$^{2}$.
+			\begin{itemize}
+			\item[$\rightarrow$] Aspect ration: $\sqrt{2}:1$ 
+			\item[$\rightarrow$] Enlargement and reduction: factor $\sqrt{2}$
+			\end{itemize}
+		\item Creation of next smaller format by halving the area, e.g. $A 0:A 1=2:1$
+		\end{itemize}
+		\includegraphics[width=\linewidth]{DINA}
+		\paragraph{Text field:}
+			Completion of a text field for a production drawing with the following information:
+			\begin{itemize}
+			\item Component designation
+			\item Material specification
+			\item Tolerance specification
+			\item Information of the creator of the drawing
+			\item Specification of the scale used
+			\end{itemize}
+			\includegraphics[width=\linewidth]{textfield}
+		\paragraph{Folding:}
+			Hand-folding A0 to Form A4 for filing with punched edge:
+			\includegraphics[width=\linewidth]{folding}
+		\subsubsection{Scales}
+			\includegraphics[width=\linewidth]{scales}
+			\paragraph{Scales according to DIN ISO 5455:}
+				All parts need to be drawn in a defined scale in relation to the original dimensions of the final part:
+				\begin{itemize}
+				\item Enlargement / reduction scales may be used along defined rations to e.g. fit drawing formats or to highlight small details / enlarge small parts.
+				\end{itemize}
+				\includegraphics[width=\linewidth]{scales2}
+\end{document}
